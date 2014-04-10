@@ -1,0 +1,21 @@
+{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'cfbdata/team.css' %}" />
+
+{% if game_list %}
+<h2>{{ school_name }}</h2>
+<table>
+{% for game in game_list %}
+    {% if game.win == True %}
+    <tr>
+    <td>{{ game.date }}</td><td>{{ school_name }}</td><td>{{ game.team_score }}</td><td>{{ game.opponent_name }}</td><td>{{ game.opponent_score }}</td><td>W</td>
+    </tr>   
+    {% endif %}
+    {% if game.win == False %}
+    <tr>
+    <td>{{ game.date }}</td><td>{{ school_name }}</td><td>{{ game.team_score }}</td><td>{{ game.opponent_name }}</td><td>{{ game.opponent_score }}</td><td>L</td>
+    </tr>
+    {% endif %}
+{% endfor %}
+</table>
+{% endif %}

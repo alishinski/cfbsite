@@ -1,0 +1,16 @@
+<h2>FBS</h2>
+<ul>
+{% for conference in conference_list %}
+{% if conference.subdivision == "FBS" %}
+    <li><a href="{% url 'conference' conference.conference_code %}">{{ conference.conference_name }}</a></li>
+{% endif %}
+{% endfor %}
+</ul>
+<h2>FCS</h2>
+<ul>
+{% for conference in conference_list %}
+{% if conference.subdivision == "FCS" %}
+    <li><a href="{% url 'conference' conference.conference_code %}">{{ conference.conference_name }}</a></li>
+{% endif %}
+{% endfor %}
+</ul>

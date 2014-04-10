@@ -1,0 +1,6 @@
+<h2>{{ name }}</h2>
+<ul>
+{% for team in list %}
+    <li><a href="{% url 'team' team.conference_code team.team_num_code %}">{{ team.school_name }}</a></li>
+{% endfor %}
+</ul>

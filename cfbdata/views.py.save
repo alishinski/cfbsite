@@ -1,0 +1,26 @@
+from django.shortcuts import render
+from django.http import HttpResponse
+# Create your views here.
+from cfbdata.models import Team
+from django.template import RequestContext, loader
+
+def index(request):
+    return HttpResponse("Hello, world. You're at the Team index.")
+
+def teamlist(request):
+    #output = ', '.join([team.school_name for team in Team.objects.all()])
+    team_list = Team.objects.all()
+    template = loader.get_template('cfbdata/teamlist.html')
+    context = RequestContext(request, {
+        'team_list': team_list,
+    })
+    return HttpResponse(template.render(context))
+
+def conference(request, conference_code):
+    conference_list = Team.objects.filter(conference_code=conference_code)
+    template = loader.get_template('cfbdata/conference.html')
+pResponse("You're looking at the list of teams from conference %s." % conference_code)
+
+def team(request, school_name, conference_code):
+    return HttpResponse("You're looking at the page for team %s." % school_name)
+

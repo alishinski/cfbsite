@@ -1,0 +1,42 @@
+from django.db import models
+
+import csv
+import datetime
+
+class Team(models.Model):
+    school_name = models.CharField(max_length=200)
+    mascot_name = models.CharField(max_length=200)
+    win_total = models.IntegerField(default=0)
+    loss_total = models.IntegerField(default=0)
+    team_num_code = models.IntegerField(default=0)
+    conference_code = models.IntegerField(default=0)   
+    def __unicode__(self):
+	return self.school_name
+	
+class Game(models.Model):
+    team = models.ForeignKey(Team)
+    date = models.DateField(default=datetime.date.today())
+    team_score = models.IntegerField(default=0)
+    opponent_score = models.IntegerField(default=0)
+    win = models.NullBooleanField(default="NULL")
+    game_num_code = models.IntegerField(default=0)
+
+#with open("/home/alex/cfbsite/cfbdata/team.csv") as f:
+#    reader = csv.reader(f)
+#    next(reader, None)
+#    for row in reader:
+#        _, created = Team.objects.get_or_create(
+#            school_name = row[1],
+#	    team_num_code = row[0],
+#            conference_code = row[2],	
+#	    )
+
+#with open("/home/alex/cfbsite/cfbdata/team-game-statistics.csv") as f:
+#    reader = csv.reader(f)
+#    next(reader, None)
+#    for team in Team.objects.all():
+#    	for row in reader:
+#            if row[0] == team.team_num_code:
+#            	_, created = team.game_set.create(
+#                    team_score = row[49],
+#		    )    

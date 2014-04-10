@@ -1,0 +1,6 @@
+% if game_list %}
+<p>You are looking at the team page for {{ school_name }}</p>
+<ul>
+{% for game in game_list %}
+    <li>Game {{game_list.index(game)}} :  {{ game.team_score }} </li>
+</ul>
